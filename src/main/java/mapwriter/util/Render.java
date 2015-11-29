@@ -5,6 +5,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -170,11 +171,11 @@ public class Render
 			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			Tessellator tessellator = Tessellator.getInstance();
 			WorldRenderer renderer = tessellator.getWorldRenderer();
-			renderer.startDrawingQuads();
-			renderer.addVertexWithUV(x + w, y, zDepth, u2, v1);
-			renderer.addVertexWithUV(x, y, zDepth, u1, v1);
-			renderer.addVertexWithUV(x, y + h, zDepth, u1, v2);
-			renderer.addVertexWithUV(x + w, y + h, zDepth, u2, v2);
+			Render.startDrawingQuads();
+			Render.addVertexWithUV(x + w, y, zDepth, u2, v1);
+			Render.addVertexWithUV(x, y, zDepth, u1, v1);
+			Render.addVertexWithUV(x, y + h, zDepth, u1, v2);
+			Render.addVertexWithUV(x + w, y + h, zDepth, u2, v2);
 			// renderer.finishDrawing();
 			tessellator.draw();
 			GlStateManager.disableBlend();
@@ -195,11 +196,11 @@ public class Render
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer renderer = tessellator.getWorldRenderer();
-		renderer.startDrawing(GL11.GL_TRIANGLE_FAN);
-		renderer.addVertex(x + (length * Math.cos(angle)), y + (length * Math.sin(angle)), zDepth);
-		renderer.addVertex(x + (length * 0.5D * Math.cos(angle - arrowBackAngle)), y + (length * 0.5D * Math.sin(angle - arrowBackAngle)), zDepth);
-		renderer.addVertex(x + (length * 0.3D * Math.cos(angle + Math.PI)), y + (length * 0.3D * Math.sin(angle + Math.PI)), zDepth);
-		renderer.addVertex(x + (length * 0.5D * Math.cos(angle + arrowBackAngle)), y + (length * 0.5D * Math.sin(angle + arrowBackAngle)), zDepth);
+		Render.startDrawingTriangleFan();
+		Render.addVertex(x + (length * Math.cos(angle)), y + (length * Math.sin(angle)), zDepth);
+		Render.addVertex(x + (length * 0.5D * Math.cos(angle - arrowBackAngle)), y + (length * 0.5D * Math.sin(angle - arrowBackAngle)), zDepth);
+		Render.addVertex(x + (length * 0.3D * Math.cos(angle + Math.PI)), y + (length * 0.3D * Math.sin(angle + Math.PI)), zDepth);
+		Render.addVertex(x + (length * 0.5D * Math.cos(angle + arrowBackAngle)), y + (length * 0.5D * Math.sin(angle + arrowBackAngle)), zDepth);
 		// renderer.finishDrawing();
 		tessellator.draw();
 		GlStateManager.enableTexture2D();
@@ -213,10 +214,10 @@ public class Render
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer renderer = tessellator.getWorldRenderer();
-		renderer.startDrawing(GL11.GL_TRIANGLES);
-		renderer.addVertex(x1, y1, zDepth);
-		renderer.addVertex(x2, y2, zDepth);
-		renderer.addVertex(x3, y3, zDepth);
+		Render.startDrawingTriangle();
+		Render.addVertex(x1, y1, zDepth);
+		Render.addVertex(x2, y2, zDepth);
+		Render.addVertex(x3, y3, zDepth);
 		// renderer.finishDrawing();
 		tessellator.draw();
 		GlStateManager.enableTexture2D();
@@ -230,11 +231,11 @@ public class Render
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer renderer = tessellator.getWorldRenderer();
-		renderer.startDrawingQuads();
-		renderer.addVertex(x + w, y, zDepth);
-		renderer.addVertex(x, y, zDepth);
-		renderer.addVertex(x, y + h, zDepth);
-		renderer.addVertex(x + w, y + h, zDepth);
+		Render.startDrawingQuads();
+		Render.addVertex(x + w, y, zDepth);
+		Render.addVertex(x, y, zDepth);
+		Render.addVertex(x, y + h, zDepth);
+		Render.addVertex(x + w, y + h, zDepth);
 		// renderer.finishDrawing();
 		tessellator.draw();
 		GlStateManager.enableTexture2D();
@@ -248,15 +249,15 @@ public class Render
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer renderer = tessellator.getWorldRenderer();
-		renderer.startDrawing(GL11.GL_TRIANGLE_FAN);
-		renderer.addVertex(x, y, zDepth);
+		Render.startDrawingTriangleFan();
+		Render.addVertex(x, y, zDepth);
 		// for some the circle is only drawn if theta is decreasing rather than
 		// ascending
 		double end = Math.PI * 2.0;
 		double incr = end / circleSteps;
 		for (double theta = -incr; theta < end; theta += incr)
 		{
-			renderer.addVertex(x + (r * Math.cos(-theta)), y + (r * Math.sin(-theta)), zDepth);
+			Render.addVertex(x + (r * Math.cos(-theta)), y + (r * Math.sin(-theta)), zDepth);
 		}
 		// renderer.finishDrawing();
 		tessellator.draw();
@@ -271,7 +272,7 @@ public class Render
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		Tessellator tessellator = Tessellator.getInstance();
 		WorldRenderer renderer = tessellator.getWorldRenderer();
-		renderer.startDrawing(GL11.GL_TRIANGLE_STRIP);
+		Render.startDrawingTriangleStrip();
 		// for some the circle is only drawn if theta is decreasing rather than
 		// ascending
 		double end = Math.PI * 2.0;
@@ -279,8 +280,8 @@ public class Render
 		double r2 = r + width;
 		for (double theta = -incr; theta < end; theta += incr)
 		{
-			renderer.addVertex(x + (r * Math.cos(-theta)), y + (r * Math.sin(-theta)), zDepth);
-			renderer.addVertex(x + (r2 * Math.cos(-theta)), y + (r2 * Math.sin(-theta)), zDepth);
+			Render.addVertex(x + (r * Math.cos(-theta)), y + (r * Math.sin(-theta)), zDepth);
+			Render.addVertex(x + (r2 * Math.cos(-theta)), y + (r2 * Math.sin(-theta)), zDepth);
 		}
 		// renderer.finishDrawing();
 		tessellator.draw();
@@ -373,6 +374,88 @@ public class Render
 		Render.zDepth = 0.0;
 	}
 
+	public static void startDrawingQuads()
+	{
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		worldrenderer.func_181668_a(GL11.GL_QUADS, DefaultVertexFormats.field_181707_g);
+	}
+	
+	public static void startDrawingTriangleFan()
+	{
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		worldrenderer.func_181668_a(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.field_181705_e);
+	}
+	
+	public static void startDrawingTriangleStrip()
+	{
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		worldrenderer.func_181668_a(GL11.GL_TRIANGLE_STRIP, DefaultVertexFormats.field_181705_e);
+	}
+	
+	public static void startDrawingTriangle()
+	{
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		worldrenderer.func_181668_a(GL11.GL_TRIANGLES, DefaultVertexFormats.field_181705_e);
+	}
+	
+	public static void addVertex(double x, double y, double z)
+	{
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		//				add vertex			next vertex
+		worldrenderer.func_181662_b(x,y,z).func_181675_d();
+	}
+	
+	public static void addVertexColored(double x, double y, double z, int r, int g, int b, int a)
+	{
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		//				add vertex			set color					next vertex
+		worldrenderer.func_181662_b(x,y,z).func_181669_b(r, g, b, a).func_181675_d();
+	}
+	
+	public static void addVertexColored_I(double x, double y, double z, int color ,int a)
+	{
+        int r = color >> 16 & 255;
+        int g = color >> 8 & 255;
+        int b = color & 255;
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		//				add vertex			set color					next vertex
+		worldrenderer.func_181662_b(x,y,z).func_181669_b(r, g, b, a).func_181675_d();
+	}
+	
+	public static void addVertexWithUV(double x, double y, double z, double u, double v)
+	{
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		//				add vertex							set uv								next vertex
+		worldrenderer.func_181662_b(x, y, z).func_181673_a(u, v).func_181675_d();
+	}
+	
+	public static void addVertexWithUVColored(double x, double y, double z, double u, double v, int r, int g, int b, int a)
+	{
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		//				add vertex							set uv								next vertex
+		worldrenderer.func_181662_b(x, y, z).func_181673_a(u, v).func_181669_b(r, g, b, a).func_181675_d();
+	}
+	
+	public static void addVertexWithUVColored_I(double x, double y, double z, double u, double v, int color ,int a)
+	{
+        int r = color >> 16 & 255;
+        int g = color >> 8 & 255;
+        int b = color & 255;
+		Tessellator tessellator = Tessellator.getInstance();
+		WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+		//				add vertex							set uv								next vertex
+		worldrenderer.func_181662_b(x, y, z).func_181673_a(u, v).func_181669_b(r, g, b, a).func_181675_d();
+	}
+	
 	// A better implementation of a circular stencil using the stencil buffer
 	// rather than the depth buffer can be found below. It works only on GL
 	// implementations that attach a stencil buffer by default (e.g. Intel, but

@@ -12,6 +12,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.input.Mouse;
 
+import mapwriter.util.Render;
+
 @SideOnly(Side.CLIENT)
 public abstract class MwGuiSlot
 {
@@ -305,26 +307,23 @@ public abstract class MwGuiSlot
 					i2 = this.top;
 				}
 				// draw the scrollbar
-				worldrenderer.startDrawingQuads();
-				worldrenderer.setColorRGBA_I(0, 255);
-				worldrenderer.addVertexWithUV(k, this.bottom, 0.0D, 0.0D, 1.0D);
-				worldrenderer.addVertexWithUV(l, this.bottom, 0.0D, 1.0D, 1.0D);
-				worldrenderer.addVertexWithUV(l, this.top, 0.0D, 1.0D, 0.0D);
-				worldrenderer.addVertexWithUV(k, this.top, 0.0D, 0.0D, 0.0D);
+				Render.startDrawingQuads();
+				Render.addVertexWithUVColored_I(k, this.bottom, 0.0D, 0.0D, 1.0D, 0, 255);
+				Render.addVertexWithUVColored_I(l, this.bottom, 0.0D, 1.0D, 1.0D, 0, 255);
+				Render.addVertexWithUVColored_I(l, this.top, 0.0D, 1.0D, 0.0D, 0, 255);
+				Render.addVertexWithUVColored_I(k, this.top, 0.0D, 0.0D, 0.0D, 0, 255);
 				tessellator.draw();
-				worldrenderer.startDrawingQuads();
-				worldrenderer.setColorRGBA_I(8421504, 255);
-				worldrenderer.addVertexWithUV(k, i2 + l1, 0.0D, 0.0D, 1.0D);
-				worldrenderer.addVertexWithUV(l, i2 + l1, 0.0D, 1.0D, 1.0D);
-				worldrenderer.addVertexWithUV(l, i2, 0.0D, 1.0D, 0.0D);
-				worldrenderer.addVertexWithUV(k, i2, 0.0D, 0.0D, 0.0D);
+				Render.startDrawingQuads();
+				Render.addVertexWithUVColored_I(k, i2 + l1, 0.0D, 0.0D, 1.0D, 8421504, 255);
+				Render.addVertexWithUVColored_I(l, i2 + l1, 0.0D, 1.0D, 1.0D, 8421504, 255);
+				Render.addVertexWithUVColored_I(l, i2, 0.0D, 1.0D, 0.0D, 8421504, 255);
+				Render.addVertexWithUVColored_I(k, i2, 0.0D, 0.0D, 0.0D, 8421504, 255);
 				tessellator.draw();
-				worldrenderer.startDrawingQuads();
-				worldrenderer.setColorRGBA_I(12632256, 255);
-				worldrenderer.addVertexWithUV(k, (i2 + l1) - 1, 0.0D, 0.0D, 1.0D);
-				worldrenderer.addVertexWithUV(l - 1, (i2 + l1) - 1, 0.0D, 1.0D, 1.0D);
-				worldrenderer.addVertexWithUV(l - 1, i2, 0.0D, 1.0D, 0.0D);
-				worldrenderer.addVertexWithUV(k, i2, 0.0D, 0.0D, 0.0D);
+				Render.startDrawingQuads();
+				Render.addVertexWithUVColored_I(k, (i2 + l1) - 1, 0.0D, 0.0D, 1.0D, 12632256, 255);
+				Render.addVertexWithUVColored_I(l - 1, (i2 + l1) - 1, 0.0D, 1.0D, 1.0D, 12632256, 255);
+				Render.addVertexWithUVColored_I(l - 1, i2, 0.0D, 1.0D, 0.0D, 12632256, 255);
+				Render.addVertexWithUVColored_I(k, i2, 0.0D, 0.0D, 0.0D, 12632256, 255);
 				tessellator.draw();
 			}
 
@@ -504,17 +503,17 @@ public abstract class MwGuiSlot
 
 				GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 				GlStateManager.disableTexture2D();
-				worldrenderer.startDrawingQuads();
-				worldrenderer.setColorOpaque_I(8421504);
-				worldrenderer.addVertexWithUV(xLeft, yTotal + slotHeight, 0.0D, 0.0D, 1.0D);
-				worldrenderer.addVertexWithUV(xRight, yTotal + slotHeight, 0.0D, 1.0D, 1.0D);
-				worldrenderer.addVertexWithUV(xRight, (yTotal), 0.0D, 1.0D, 0.0D);
-				worldrenderer.addVertexWithUV(xLeft, (yTotal), 0.0D, 0.0D, 0.0D);
-				worldrenderer.setColorOpaque_I(0);
-				worldrenderer.addVertexWithUV(xLeft + 1, (yTotal + slotHeight) - 1, 0.0D, 0.0D, 1.0D);
-				worldrenderer.addVertexWithUV(xRight - 1, (yTotal + slotHeight) - 1, 0.0D, 1.0D, 1.0D);
-				worldrenderer.addVertexWithUV(xRight - 1, yTotal + 1, 0.0D, 1.0D, 0.0D);
-				worldrenderer.addVertexWithUV(xLeft + 1, yTotal + 1, 0.0D, 0.0D, 0.0D);
+				Render.startDrawingQuads();
+
+				Render.addVertexWithUVColored_I(xLeft, yTotal + slotHeight, 0.0D, 0.0D, 1.0D, 8421504, 255);
+				Render.addVertexWithUVColored_I(xRight, yTotal + slotHeight, 0.0D, 1.0D, 1.0D, 8421504, 255);
+				Render.addVertexWithUVColored_I(xRight, (yTotal), 0.0D, 1.0D, 0.0D, 8421504, 255);
+				Render.addVertexWithUVColored_I(xLeft, (yTotal), 0.0D, 0.0D, 0.0D, 8421504, 255);
+				
+				Render.addVertexWithUVColored_I(xLeft + 1, (yTotal + slotHeight) - 1, 0.0D, 0.0D, 1.0D, 0, 255);
+				Render.addVertexWithUVColored_I(xRight - 1, (yTotal + slotHeight) - 1, 0.0D, 1.0D, 1.0D, 0, 255);
+				Render.addVertexWithUVColored_I(xRight - 1, yTotal + 1, 0.0D, 1.0D, 0.0D, 0, 255);
+				Render.addVertexWithUVColored_I(xLeft + 1, yTotal + 1, 0.0D, 0.0D, 0.0D, 0, 255);
 				tessellator.draw();
 				GlStateManager.enableTexture2D();
 			}

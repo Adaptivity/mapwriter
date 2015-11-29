@@ -10,6 +10,7 @@ import mapwriter.config.WorldConfig;
 import mapwriter.map.mapmode.MapMode;
 import mapwriter.util.Logging;
 import mapwriter.util.Reference;
+import mapwriter.util.Render;
 import mapwriter.util.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -394,7 +395,7 @@ public class MarkerManager
 		GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
 		GlStateManager.depthMask(false);
 
-		worldrenderer.startDrawingQuads();
+		Render.startDrawingQuads();
 		// size of the square from middle to edge
 		double d4 = 0.2D;
 
@@ -407,28 +408,25 @@ public class MarkerManager
 		double d11 = 0.5D + (Math.cos(d3 + 5.497787143782138D) * d4);
 		double d12 = 0.5D + (Math.sin(d3 + 5.497787143782138D) * d4);
 
-		worldrenderer.setColorRGBA_I(m.colour, 50);
-
-		worldrenderer.addVertex(x + d5, y + d17, z + d6);
-		worldrenderer.addVertex(x + d5, y, z + d6);
-		worldrenderer.addVertex(x + d7, y, z + d8);
-		worldrenderer.addVertex(x + d7, y + d17, z + d8);
-		worldrenderer.addVertex(x + d11, y + d17, z + d12);
-		worldrenderer.addVertex(x + d11, y, z + d12);
-		worldrenderer.addVertex(x + d9, y, z + d10);
-		worldrenderer.addVertex(x + d9, y + d17, z + d10);
-		worldrenderer.addVertex(x + d7, y + d17, z + d8);
-		worldrenderer.addVertex(x + d7, y, z + d8);
-		worldrenderer.addVertex(x + d11, y, z + d12);
-		worldrenderer.addVertex(x + d11, y + d17, z + d12);
-		worldrenderer.addVertex(x + d9, y + d17, z + d10);
-		worldrenderer.addVertex(x + d9, y, z + d10);
-		worldrenderer.addVertex(x + d5, y, z + d6);
-		worldrenderer.addVertex(x + d5, y + d17, z + d6);
+		Render.addVertexColored_I(x + d5, y + d17, z + d6, m.colour, 50);
+		Render.addVertexColored_I(x + d5, y, z + d6, m.colour, 50);
+		Render.addVertexColored_I(x + d7, y, z + d8, m.colour, 50);
+		Render.addVertexColored_I(x + d7, y + d17, z + d8, m.colour, 50);
+		Render.addVertexColored_I(x + d11, y + d17, z + d12, m.colour, 50);
+		Render.addVertexColored_I(x + d11, y, z + d12, m.colour, 50);
+		Render.addVertexColored_I(x + d9, y, z + d10, m.colour, 50);
+		Render.addVertexColored_I(x + d9, y + d17, z + d10, m.colour, 50);
+		Render.addVertexColored_I(x + d7, y + d17, z + d8, m.colour, 50);
+		Render.addVertexColored_I(x + d7, y, z + d8, m.colour, 50);
+		Render.addVertexColored_I(x + d11, y, z + d12, m.colour, 50);
+		Render.addVertexColored_I(x + d11, y + d17, z + d12, m.colour, 50);
+		Render.addVertexColored_I(x + d9, y + d17, z + d10, m.colour, 50);
+		Render.addVertexColored_I(x + d9, y, z + d10, m.colour, 50);
+		Render.addVertexColored_I(x + d5, y, z + d6, m.colour, 50);
+		Render.addVertexColored_I(x + d5, y + d17, z + d6, m.colour, 50);
 		tessellator.draw();
 
-		worldrenderer.startDrawingQuads();
-		worldrenderer.setColorRGBA_I(m.colour, 50);
+		Render.startDrawingQuads();
 		// size of the square from middle to edge
 		d4 = 0.5D;
 
@@ -441,22 +439,22 @@ public class MarkerManager
 		d11 = 0.5D + (Math.sin(d3 + 5.497787143782138D) * d4);
 		d12 = 0.5D + (Math.cos(d3 + 5.497787143782138D) * d4);
 
-		worldrenderer.addVertex(x + d5, y + d17, z + d6);
-		worldrenderer.addVertex(x + d5, y, z + d6);
-		worldrenderer.addVertex(x + d7, y, z + d8);
-		worldrenderer.addVertex(x + d7, y + d17, z + d8);
-		worldrenderer.addVertex(x + d11, y + d17, z + d12);
-		worldrenderer.addVertex(x + d11, y, z + d12);
-		worldrenderer.addVertex(x + d9, y, z + d10);
-		worldrenderer.addVertex(x + d9, y + d17, z + d10);
-		worldrenderer.addVertex(x + d7, y + d17, z + d8);
-		worldrenderer.addVertex(x + d7, y, z + d8);
-		worldrenderer.addVertex(x + d11, y, z + d12);
-		worldrenderer.addVertex(x + d11, y + d17, z + d12);
-		worldrenderer.addVertex(x + d9, y + d17, z + d10);
-		worldrenderer.addVertex(x + d9, y, z + d10);
-		worldrenderer.addVertex(x + d5, y, z + d6);
-		worldrenderer.addVertex(x + d5, y + d17, z + d6);
+		Render.addVertexColored_I(x + d5, y + d17, z + d6, m.colour, 50);
+		Render.addVertexColored_I(x + d5, y, z + d6, m.colour, 50);
+		Render.addVertexColored_I(x + d7, y, z + d8, m.colour, 50);
+		Render.addVertexColored_I(x + d7, y + d17, z + d8, m.colour, 50);
+		Render.addVertexColored_I(x + d11, y + d17, z + d12, m.colour, 50);
+		Render.addVertexColored_I(x + d11, y, z + d12, m.colour, 50);
+		Render.addVertexColored_I(x + d9, y, z + d10, m.colour, 50);
+		Render.addVertexColored_I(x + d9, y + d17, z + d10, m.colour, 50);
+		Render.addVertexColored_I(x + d7, y + d17, z + d8, m.colour, 50);
+		Render.addVertexColored_I(x + d7, y, z + d8, m.colour, 50);
+		Render.addVertexColored_I(x + d11, y, z + d12, m.colour, 50);
+		Render.addVertexColored_I(x + d11, y + d17, z + d12, m.colour, 50);
+		Render.addVertexColored_I(x + d9, y + d17, z + d10, m.colour, 50);
+		Render.addVertexColored_I(x + d9, y, z + d10, m.colour, 50);
+		Render.addVertexColored_I(x + d5, y, z + d6, m.colour, 50);
+		Render.addVertexColored_I(x + d5, y + d17, z + d6, m.colour, 50);
 		tessellator.draw();
 
 		GlStateManager.enableLighting();
@@ -507,20 +505,18 @@ public class MarkerManager
 
 		GlStateManager.disableTexture2D();
 
-		worldrenderer.startDrawingQuads();
-		worldrenderer.setColorRGBA_I(m.colour, 64);
-		worldrenderer.addVertex(-strTextWidth - 1, (-1), 0.0D);
-		worldrenderer.addVertex(-strTextWidth - 1, (8), 0.0D);
-		worldrenderer.addVertex(strTextWidth + 1, (8), 0.0D);
-		worldrenderer.addVertex(strTextWidth + 1, (-1), 0.0D);
+		Render.startDrawingQuads();
+		Render.addVertexColored_I(-strTextWidth - 1, (-1), 0.0D, m.colour, 64);
+		Render.addVertexColored_I(-strTextWidth - 1, (8), 0.0D, m.colour, 64);
+		Render.addVertexColored_I(strTextWidth + 1, (8), 0.0D, m.colour, 64);
+		Render.addVertexColored_I(strTextWidth + 1, (-1), 0.0D, m.colour, 64);
 		tessellator.draw();
 
-		worldrenderer.startDrawingQuads();
-		worldrenderer.setColorRGBA_I(m.colour, 64);
-		worldrenderer.addVertex(-strDistanceWidth - 1, -1 + offstet, 0.0D);
-		worldrenderer.addVertex(-strDistanceWidth - 1, 8 + offstet, 0.0D);
-		worldrenderer.addVertex(strDistanceWidth + 1, 8 + offstet, 0.0D);
-		worldrenderer.addVertex(strDistanceWidth + 1, -1 + offstet, 0.0D);
+		Render.startDrawingQuads();
+		Render.addVertexColored_I(-strDistanceWidth - 1, -1 + offstet, 0.0D, m.colour, 64);
+		Render.addVertexColored_I(-strDistanceWidth - 1, 8 + offstet, 0.0D, m.colour, 64);
+		Render.addVertexColored_I(strDistanceWidth + 1, 8 + offstet, 0.0D, m.colour, 64);
+		Render.addVertexColored_I(strDistanceWidth + 1, -1 + offstet, 0.0D, m.colour, 64);
 		tessellator.draw();
 
 		GlStateManager.enableTexture2D();
